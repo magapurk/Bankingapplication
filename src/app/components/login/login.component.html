@@ -1,0 +1,43 @@
+<!-- <div class="background-img"> -->
+
+<div>
+  <img src="/assets/background.jpg">
+  <div class="div-center">
+    <div class="content">
+      <h3>Login</h3>
+      <hr />
+      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <div class="form-group">
+          <div style="margin:7px 0;">
+            <label style="margin-right:8px;">
+              <input style="margin-right:3px;" type="radio" name="sh" (click)="showlabel('0')" checked>UserName
+            </label>
+            <label>
+              <input style="margin-right:3px;" type="radio" name="sh" (click)="showlabel('1')">Account Number
+            </label>
+            <!-- <div class="text-center purple" *ngIf="sh == 1">Account Number</div>
+            <div class="text-center red" *ngIf="sh == 0">Username</div> -->
+          </div>
+          <label for="username">{{labelName}}<span class="req">*</span></label>
+          <!-- <label for="0" *ngIf="sh == 0">Username<span class="req">*</span></label> -->
+
+          <input type="text" id="username" class="form-control" id="exampleInputEmail1" [(ngModel)]="accno" name="accnos"
+            placeholder="Enter {{labelName}}" minlength="6" maxlength="12" required />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">PIN<span class="req">*</span></label>
+          <input type="text" class="form-control" id="exampleInputPassword1" [(ngModel)]="pin" name="pins"
+            placeholder="Enter PIN" required minlength="6" maxlength="6">
+
+        </div>
+        <button type="submit" class="btn btn-primary login" [disabled]="!heroForm.form.valid"
+          (click)="login()">Login</button>
+        <hr />
+        <button type="button" class="btn btn-link register" (click)="onRegister()">Register/SignUp</button>
+        <!-- <button type="button" class="btn btn-link">Reset Password</button> -->
+
+      </form>
+
+    </div>
+  </div>
+</div>
