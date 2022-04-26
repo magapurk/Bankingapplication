@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   login() {
     localStorage.setItem('accountnum', this.accno);
     localStorage.getItem("accountnum");
+    console.log(this.accno);
     if (this.accno && this.pin == "123456") {
       this.router.navigateByUrl('/showbal');
     }
