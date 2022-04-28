@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http'
+
 @Component({
   selector: 'app-transferfunds',
   templateUrl: './transferfunds.component.html',
@@ -7,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class TransferfundsComponent implements OnInit {
 funds:any;
-  constructor(private router:Router) { }
+  updateddata: any;
+  constructor(private router:Router,private httpService:HttpClient) { }
 
   ngOnInit() {
     this.funds=localStorage.getItem("accountnum");
@@ -15,5 +18,10 @@ funds:any;
    this.router.navigateByUrl('/login');
   
   }
- 
+  transferFunds(){
+    this.httpService.post("","").subscribe((data:any)=>{
+      this.updateddata=data;
+      console.log(this.updateddata);
+    })
+  }
 }

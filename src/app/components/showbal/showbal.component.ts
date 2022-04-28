@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http'
+
 @Component({
   selector: 'app-showbal',
   templateUrl: './showbal.component.html',
@@ -7,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class ShowbalComponent implements OnInit {
 accountvalue:any
-  constructor(private router:Router) { }
+  info: any;
+  updateddata: any;
+  constructor(private router:Router,private httpService:HttpClient) { }
 
   ngOnInit() {
   
@@ -19,5 +23,16 @@ accountvalue:any
   counter(i: number) {
     return new Array(i);
 }
-
+showBal(){
+  this.httpService.get("").subscribe((data:any)=>{
+    this.info=data;
+    console.log(this.info);
+  })
+}
+// updateData(){
+//   this.httpService.post("","").subscribe((data:any)=>{
+//     this.updateddata=data;
+//     console.log(this.updateddata);
+//   })
+// }
 }

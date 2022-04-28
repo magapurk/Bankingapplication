@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 // import { FormsModule } from '@angular/forms';
+import {HttpClient} from '@angular/common/http'
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   logindis: boolean;
   submitted = false;
   isChecked: true;
-  constructor(private router: Router) { }
+  loginData: any;
+  constructor(private router: Router,private httpService:HttpClient) { }
   labelName: string = "UserName";
   ngOnInit() {
 
@@ -41,5 +43,10 @@ export class LoginComponent implements OnInit {
       this.labelName = "Account Number";
     }
   }
-
+  logindata(){
+    this.httpService.post("","").subscribe((data:any)=>{
+      this.loginData=data;
+      console.log(this.loginData);
+    })
+  }
 }

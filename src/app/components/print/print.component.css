@@ -8,3 +8,6 @@
 .margin10{
     margin:10px;
 }
+::ng-deep .tableTask .dx-datagrid-rowsview .dx-row td {
+    border-bottom: 1px solid red;
+  }

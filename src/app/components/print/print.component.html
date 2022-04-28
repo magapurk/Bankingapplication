@@ -22,3 +22,17 @@
   
     </form>
   </div>
+  <dx-button
+    text="Click me"
+    (onClick)="helloWorld()">
+</dx-button>
+<dx-data-grid
+    dataSource="assets/data/datagrid.json"
+    keyExpr="EmployeeID"
+    [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+    [showColumnLines]="false"
+    [showRowLines]="true"
+    [showBorders]="true"
+    [rowAlternationEnabled]="true"
+>
+</dx-data-grid>

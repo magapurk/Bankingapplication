@@ -1,7 +1,7 @@
 <section>
   <div class="container">
     <div class="row justify-content-center">
-      <form (ngSubmit)="onSubmit()">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit();">
         <div class="col-12 col-md-8 col-lg-8 col-xl-6">
           <div class="row">
             <div class="col text-center">
@@ -10,36 +10,72 @@
           </div>
           <div class="row align-items-center mt-4">
             <div class="col">
-              <input type="text" name="firstname" class="form-control" placeholder="FirstName">
+              <input type="text" name="firstname" formControlName="firstname" class="form-control"
+                placeholder="FirstName" [ngClass]="{ 'is-invalid': submitted && fval.firstname.errors }" />
+              <div *ngIf="submitted && fval.firstname.errors" class="invalid-feedback">
+                <div *ngIf="fval.firstname.errors.required">
+                  FirstName is required
+                </div>
+              </div>
             </div>
             <div class="col">
-              <input type="text" name="lastname" class="form-control" placeholder="LastName">
+              <input type="text" name="lastname" formControlName="lastname" class="form-control" placeholder="LastName"
+              [ngClass]="{ 'is-invalid': submitted && fval.lastname.invalid }" required />
+              <div *ngIf="submitted && fval.lastname.errors" class="invalid-feedback">
+                <div *ngIf="fval.lastname.errors.required">
+                  LastName is required
+                </div>
+              </div>
             </div>
           </div>
           <div class="row align-items-center">
             <div class="col mt-4">
-              <input type="text" name="username" class="form-control" placeholder="Username">
+              <input type="text" name="username" formControlName="username"class="form-control" placeholder="Username"
+              [ngClass]="{ 'is-invalid': submitted && fval.lastname.invalid }" required />
+              <div *ngIf="submitted && fval.username.errors" class="invalid-feedback">
+                <div *ngIf="fval.username.errors.required">
+                  Username is required
+                </div>
+              </div>
             </div>
           </div>
           <div class="row align-items-center">
             <div class="col mt-4">
-              <input type="password" name="password" class="form-control" placeholder="Password">
+              <input type="password" name="password" formControlName="password" class="form-control" placeholder="Password"
+              [ngClass]="{ 'is-invalid': submitted && fval.password.invalid }" required />
+              <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
+                <div *ngIf="fval.password.errors.required">
+                  Password is required
+                </div>
+              </div>
             </div>
           </div>
           <div class="row align-items-center">
             <div class="col mt-4">
-              <input type="email" name="email" class="form-control" placeholder="Email">
+              <input type="email" name="email"formControlName="email" class="form-control" placeholder="Email"
+              [ngClass]="{ 'is-invalid': submitted && fval.email.invalid }" required />
+              <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                <div *ngIf="fval.email.errors.required">
+                  Email is required
+                </div>
+              </div>
             </div>
           </div>
           <div class="row align-items-center">
             <div class="col mt-4">
-              <input type="text" name="mobile" class="form-control" placeholder="MobileNumber">
+              <input type="text" name="mobile" formControlName="phone" class="form-control" placeholder="MobileNumber"
+              [ngClass]="{ 'is-invalid': submitted && fval.phone.invalid }" required />
+              <div *ngIf="submitted && fval.phone.errors" class="invalid-feedback">
+                <div *ngIf="fval.phone.errors.required">
+                  Mobile Number is required
+                </div>
+              </div>
             </div>
           </div>
           <div class="row justify-content-start mt-4">
             <div class="col">
 
-              <button class="btn btn-primary mt-4">Submit</button>
+              <button type="submit" class="btn btn-primary mt-4">Submit</button>
               <button class="btn btn-primary mt-4 mar-left" (click)="onCancel()">Cancel</button>
             </div>
           </div>
