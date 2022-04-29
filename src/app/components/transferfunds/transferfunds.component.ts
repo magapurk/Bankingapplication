@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http'
-
+import { transferfunds } from 'src/assets/models/transferfunds';
 @Component({
   selector: 'app-transferfunds',
   templateUrl: './transferfunds.component.html',
@@ -10,6 +10,7 @@ import {HttpClient} from '@angular/common/http'
 export class TransferfundsComponent implements OnInit {
 funds:any;
   updateddata: any;
+  fundsmodal:transferfunds[];
   constructor(private router:Router,private httpService:HttpClient) { }
 
   ngOnInit() {
@@ -19,7 +20,7 @@ funds:any;
   
   }
   transferFunds(){
-    this.httpService.post("","").subscribe((data:any)=>{
+    this.httpService.post("","fundsmodal").subscribe((data:any)=>{
       this.updateddata=data;
       console.log(this.updateddata);
     })

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http'
-
+import { register } from 'src/assets/models/register';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +15,9 @@ export class RegisterComponent implements OnInit {
    registerForm: FormGroup;
    submitted = false;
   registerdata: any;
+  regmodel:register[];
   constructor(private router:Router,private formBuilder: FormBuilder,private httpService:HttpClient) { }
-
+ 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       firstname: ['', Validators.required],
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
   updateData(){
-    this.httpService.post("","").subscribe((data:any)=>{
+    this.httpService.post("","regmodel").subscribe((data:any)=>{
       this.registerdata=data;
       console.log(this.registerdata);
     })
