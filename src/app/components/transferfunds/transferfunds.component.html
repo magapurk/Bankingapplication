@@ -4,25 +4,25 @@
     <div class="form-group row margin10">
       <label for="fromaccount" class="col-sm-2 col-form-label">From Account</label>
       <div class="col-sm-4">
-        <input id="fromaccount" name="fromaccount" type="text" class="form-control" [(ngModel)]="funds" disabled>
+        <input id="fromaccount" name="fromaccount" type="text" class="form-control" [(ngModel)]="fundsmodal.fromfunds" disabled>
       </div>
     </div>
     <div class="form-group row margin10">
       <label for="toaccount" class="col-sm-2 col-form-label">To Account</label>
       <div class="col-sm-4">
-        <input id="toaccount" name="toaccount" type="text" class="form-control">
+        <input id="toaccount" name="toaccount" type="text" [(ngModel)]="fundsmodal.toaccount" class="form-control">
       </div>
     </div>
     <div class="form-group row margin10">
       <label for="amount" class="col-sm-2 col-form-label">Amount</label>
       <div class="col-sm-4">
-        <input id="amount" name="amount" type="text" class="form-control">
+        <input id="amount" name="amount" type="text" [(ngModel)]="fundsmodal.amount" class="form-control">
       </div>
     </div>
     <div class="form-group row margin10">
       <label for="amount" class="col-sm-2 col-form-label"></label>
       <div class="col-sm-4">
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit"(click)="transferFunds()" class="btn btn-primary">Send</button>
       </div>
     </div>
 

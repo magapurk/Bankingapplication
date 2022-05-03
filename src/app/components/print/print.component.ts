@@ -10,7 +10,8 @@ import {HttpClient} from '@angular/common/http'
 })
 export class PrintComponent implements OnInit {
   info: any;
-
+  fromdate:any;
+  todate:any;
   constructor(private router:Router,private httpService:HttpClient) { }
   accountvalue:any;
   ngOnInit() {
@@ -20,7 +21,7 @@ export class PrintComponent implements OnInit {
    }
   }
   getData(){
-    this.httpService.get("").subscribe((data:any)=>{
+    this.httpService.get(`/print?&accountvalue=${this.accountvalue}&fromdate=${this.fromdate}&todate=${this.todate}`).subscribe((data:any)=>{
       this.info=data;
       console.log(this.info);
     })

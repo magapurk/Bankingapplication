@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 // import { FormsModule } from '@angular/forms';
 import {HttpClient} from '@angular/common/http'
-import { login } from 'src/assets/models/login';
+import { login } from 'src/app/models/login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   isChecked: true;
   loginData: any;
-  loginmodel:login[];
+  loginmodel:login;
   constructor(private router: Router,private httpService:HttpClient) { }
   labelName: string = "UserName";
   ngOnInit() {
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
   showlabel(index) {
     debugger;
+    this.loginmodel.logintype=index;
     if (index == '0') {
       this.labelName = "UserName";
     }
@@ -45,7 +46,8 @@ export class LoginComponent implements OnInit {
     }
   }
   logindata(){
-    this.httpService.post("","loginmodel").subscribe((data:any)=>{
+
+    this.httpService.post("",this.loginmodel).subscribe((data:any)=>{
       this.loginData=data;
       console.log(this.loginData);
     })

@@ -4,19 +4,19 @@
       <div class="form-group row margin10">
         <label for="frmDate" class="col-sm-2 col-form-label">From Date</label>
         <div class="col-sm-4">
-            <input type="date" name="frmDate" class="form-control">
+            <input type="date" name="frmDate"[(ngModel)]="fromdate" class="form-control">
         </div>
       </div>
       <div class="form-group row margin10">
         <label for="toDate" class="col-sm-2 col-form-label">To Date</label>
         <div class="col-sm-4">
-            <input type="date" name="toDate" class="form-control">
+            <input type="date" name="toDate" [(ngModel)]="todate"class="form-control">
         </div>
       </div>
       <div class="form-group row margin10">
         <label for="amount" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-4">
-          <button type="submit" class="btn btn-primary">Get Report</button>
+          <button type="submit" (click)="getData()"class="btn btn-primary">Get Report</button>
         </div>
       </div>
   

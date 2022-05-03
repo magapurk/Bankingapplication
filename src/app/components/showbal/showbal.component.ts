@@ -11,6 +11,7 @@ export class ShowbalComponent implements OnInit {
 accountvalue:any
   info: any;
   updateddata: any;
+  
   constructor(private router:Router,private httpService:HttpClient) { }
 
   ngOnInit() {
@@ -18,13 +19,14 @@ accountvalue:any
    this.accountvalue=localStorage.getItem("accountnum");
    if(this.accountvalue ==null || this.accountvalue ==undefined)
    this.router.navigateByUrl('/login');
+   this.showBal();
   }
 
   counter(i: number) {
     return new Array(i);
 }
 showBal(){
-  this.httpService.get("").subscribe((data:any)=>{
+  this.httpService.get(`/showbal?accountnum=${this.accountvalue}`).subscribe((data:any)=>{
     this.info=data;
     console.log(this.info);
   })
