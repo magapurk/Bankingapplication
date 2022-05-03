@@ -35,15 +35,15 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
     }
   onSubmit(){   
-    this.submitted = true;
+    this.submitted = true;    
+    if (this.registerForm.invalid) {
+    return;
+    }
     this.httpService.post("/register",this.registerForm.value).subscribe((data:any)=>{
       this.registerdata=data;
       console.log(this.registerForm.value)
       //console.log(this.registerdata);
     })
-    if (this.registerForm.invalid) {
-    return;
-    }
     alert('form fields are validated successfully!');
     localStorage.setItem('accountnum', "123456789");
     localStorage.getItem("accountnum");
