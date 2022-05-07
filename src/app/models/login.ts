@@ -1,6 +1,6 @@
 export class login{
-    accno:number;
-    logintype:number;
-    pin:number;
+    accountNo:any;
+    isUserName:boolean;
+    password?:any;
     username:any;
 }

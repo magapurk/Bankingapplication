@@ -26,7 +26,7 @@ export class TransferfundsComponent implements OnInit {
   
   }
   transferFunds(){
-    this.httpService.post("/tfunds",this.fundsmodal).subscribe((data:any)=>{
+    this.httpService.post("http://localhost:5000/api/Account/fundTranser",this.fundsmodal).subscribe((data:any)=>{
       this.updateddata=data;
       console.log(this.updateddata);
     })

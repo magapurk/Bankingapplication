@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DxDataGridModule } from 'devextreme-angular';
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-print',
@@ -10,19 +10,19 @@ import {HttpClient} from '@angular/common/http'
 })
 export class PrintComponent implements OnInit {
   info: any;
-  fromdate:any;
-  todate:any;
-  constructor(private router:Router,private httpService:HttpClient) { }
-  accountvalue:any;
+  fromdate: any;
+  todate: any;
+  constructor(private router: Router, private httpService: HttpClient) { }
+  accountvalue: any;
   ngOnInit() {
-    this.accountvalue=localStorage.getItem("accountnum");
-   if(this.accountvalue ==null || this.accountvalue ==undefined){
-    this.router.navigateByUrl('/login');
-   }
+    this.accountvalue = localStorage.getItem("accountnum");
+    if (this.accountvalue == null || this.accountvalue == undefined) {
+      this.router.navigateByUrl('/login');
+    }
   }
-  getData(){
-    this.httpService.get(`/print?&accountvalue=${this.accountvalue}&fromdate=${this.fromdate}&todate=${this.todate}`).subscribe((data:any)=>{
-      this.info=data;
+  getData() {
+    this.httpService.get('http://localhost:5000/api/Account/GetHistory?&accno=' + this.accountvalue +'&frmDate=' +this.fromdate + '&todate='+this.todate).subscribe((data: any) => {
+      this.info = data;
       console.log(this.info);
     })
   }
