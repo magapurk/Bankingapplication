@@ -4,19 +4,19 @@
     <div class="form-group row margin10">
       <label for="fromaccount" class="col-sm-2 col-form-label">From Account</label>
       <div class="col-sm-4">
-        <input id="fromaccount" name="fromaccount" type="text" class="form-control" [(ngModel)]="fundsmodal.fromfunds" disabled>
+        <input id="fromaccount" name="fromaccount" type="text" class="form-control" [(ngModel)]="fundsmodal.frmAccNo" disabled>
       </div>
     </div>
     <div class="form-group row margin10">
       <label for="toaccount" class="col-sm-2 col-form-label">To Account</label>
       <div class="col-sm-4">
-        <input id="toaccount" name="toaccount" type="text" [(ngModel)]="fundsmodal.toaccount" class="form-control">
+        <input id="toaccount" name="toaccount" type="text" [(ngModel)]="fundsmodal.toAccNo" class="form-control" required>
       </div>
     </div>
     <div class="form-group row margin10">
       <label for="amount" class="col-sm-2 col-form-label">Amount</label>
       <div class="col-sm-4">
-        <input id="amount" name="amount" type="text" [(ngModel)]="fundsmodal.amount" class="form-control">
+        <input id="amount" name="amount" type="number" min="0" [(ngModel)]="fundsmodal.amount" class="form-control" required>
       </div>
     </div>
     <div class="form-group row margin10">

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 // import { FormsModule } from '@angular/forms';
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { login } from 'src/app/models/login';
 @Component({
   selector: 'app-login',
@@ -11,45 +11,52 @@ import { login } from 'src/app/models/login';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  accno: any;
-  pin: any;
+  accountNo: any;
+  password: any;
   logindis: boolean;
   submitted = false;
   isChecked: true;
   loginData: any;
-  loginmodel:login;
-  constructor(private router: Router,private httpService:HttpClient) { }
+  showUserName : boolean = true;
+  loginmodal: login = {
+    accountNo: "",
+    isUserName: true,
+    password: "",
+    username: ""
+  };
+
+  constructor(private router: Router, private httpService: HttpClient) { }
   labelName: string = "UserName";
   ngOnInit() {
 
   }
-  onSubmit() { this.submitted = true; }
-  login() {
-    localStorage.setItem('accountnum', this.accno);
-    localStorage.getItem("accountnum");
-    console.log(this.accno);
-    if (this.accno && this.pin == "123456") {
-      this.router.navigateByUrl('/showbal');
-    }
+  onSubmit() {
+    this.submitted = true;
+  }
+  login() {    
+    this.httpService.post("http://localhost:5000/api/Account/AccLogin", this.loginmodal).subscribe((data: any) => {
+        if (data.statusCode == 200) {
+          localStorage.setItem('accountnum', data.message);
+          this.router.navigateByUrl('/showbal');
+        } else {
+          alert(data.message);
+        }
+      });
   }
   onRegister() {
     this.router.navigateByUrl('/register')
   }
   showlabel(index) {
     debugger;
-    this.loginmodel.logintype=index;
     if (index == '0') {
       this.labelName = "UserName";
+      this.showUserName = true;
+      this.loginmodal.isUserName = true;
     }
     else {
       this.labelName = "Account Number";
+      this.loginmodal.isUserName = false;
+      this.showUserName = false;
     }
-  }
-  logindata(){
-
-    this.httpService.post("",this.loginmodel).subscribe((data:any)=>{
-      this.loginData=data;
-      console.log(this.loginData);
-    })
   }
 }
