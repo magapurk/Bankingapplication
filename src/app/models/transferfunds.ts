@@ -1,5 +1,5 @@
 export class transferfunds{
-    fromfunds:any = 0;
-    toaccount:number;
-    amount:number;
+    frmAccNo:string = "";
+    toAccNo:string ="";
+    amount:string ="";
 } 

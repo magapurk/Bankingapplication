@@ -47,13 +47,12 @@ export class RegisterComponent implements OnInit {
     //   })
     // };    
     this.httpService.post("http://localhost:5000/api/Account/accregister", this.registerForm.value).subscribe((data: any) => {
-      this.registerdata = data;
-      console.log(this.registerForm.value);
-      localStorage.setItem('accountnum', "123456789");
-      localStorage.getItem("accountnum");
+    if(data.statusCode  == 500){
+      alert(data.message);
+    }else{
+      localStorage.setItem('accountnum', data.message);
       this.router.navigateByUrl('/showbal');
-      alert('form fields are validated successfully!');
-      //console.log(this.registerdata);
+    }
     })
 
   }

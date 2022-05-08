@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   isChecked: true;
   loginData: any;
+  showUserName : boolean = true;
   loginmodal: login = {
     accountNo: "",
     isUserName: true,
@@ -32,29 +33,30 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
   }
-  login() {
+  login() {    
     this.httpService.post("http://localhost:5000/api/Account/AccLogin", this.loginmodal).subscribe((data: any) => {
-      if (data.statusCode == 200) {
-        localStorage.setItem('accountnum', data.message);        
-        this.router.navigateByUrl('/showbal');
-      }else{
-        alert(data.message);
-      }      
-    });
-
+        if (data.statusCode == 200) {
+          localStorage.setItem('accountnum', data.message);
+          this.router.navigateByUrl('/showbal');
+        } else {
+          alert(data.message);
+        }
+      });
   }
   onRegister() {
     this.router.navigateByUrl('/register')
   }
-  showlabel(index) {    
+  showlabel(index) {
     debugger;
     if (index == '0') {
-      this.labelName = "UserName";      
+      this.labelName = "UserName";
+      this.showUserName = true;
       this.loginmodal.isUserName = true;
     }
     else {
       this.labelName = "Account Number";
       this.loginmodal.isUserName = false;
+      this.showUserName = false;
     }
   }
 }

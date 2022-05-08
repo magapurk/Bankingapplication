@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-showbal',
@@ -8,33 +9,43 @@ import {HttpClient} from '@angular/common/http'
   styleUrls: ['./showbal.component.css']
 })
 export class ShowbalComponent implements OnInit {
-accountvalue:any
+  accountNo: string;
+  firstName: string;
+  accountBalance: number
   info: any;
   updateddata: any;
-  
-  constructor(private router:Router,private httpService:HttpClient) { }
+
+  constructor(private router: Router, private httpService: HttpClient) { }
 
   ngOnInit() {
-  
-   this.accountvalue=localStorage.getItem("accountnum");
-   if(this.accountvalue ==null || this.accountvalue ==undefined)
-   this.router.navigateByUrl('/login');
-   this.showBal();
+
+    this.accountNo = localStorage.getItem("accountnum");
+    if (this.accountNo == null || this.accountNo == undefined) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.showBal();
+    }
   }
 
   counter(i: number) {
     return new Array(i);
-}
-showBal(){
-  this.httpService.get(`/showbal?accountnum=${this.accountvalue}`).subscribe((data:any)=>{
-    this.info=data;
-    console.log(this.info);
-  })
-}
-// updateData(){
-//   this.httpService.post("","").subscribe((data:any)=>{
-//     this.updateddata=data;
-//     console.log(this.updateddata);
-//   })
-// }
+  }
+  showBal() {
+    this.httpService.get('http://localhost:5000/api/Account/GetAccInfo?accno=' + this.accountNo).subscribe((data: any) => {
+      debugger;
+      if (data.statusCode == 500) {
+        alert(data.message);
+      } else {
+        this.firstName = data.fName;
+        this.accountBalance = data.Balance;        
+      }
+      
+    })
+  }
+  // updateData(){
+  //   this.httpService.post("","").subscribe((data:any)=>{
+  //     this.updateddata=data;
+  //     console.log(this.updateddata);
+  //   })
+  // }
 }
