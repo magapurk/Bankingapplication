@@ -16,6 +16,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DxButtonModule } from 'devextreme-angular';
 import {DxDataGridModule} from 'devextreme-angular';
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,10 @@ import {DxDataGridModule} from 'devextreme-angular';
     ReactiveFormsModule,
     DxButtonModule,
     DxDataGridModule,
-    HttpClientModule
+    HttpClientModule,
+    BackButtonDisableModule.forRoot({
+      preserveScrollPosition: true
+    })
     
   ],
   providers: [],
