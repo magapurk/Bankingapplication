@@ -17,7 +17,8 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { DxButtonModule } from 'devextreme-angular';
 import {DxDataGridModule} from 'devextreme-angular';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
-
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
 @NgModule({
   declarations: [
     AppComponent,

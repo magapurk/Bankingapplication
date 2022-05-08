@@ -16,17 +16,19 @@
       <div class="form-group row margin10">
         <label for="amount" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-4">
-          <button type="submit" (click)="getData()"class="btn btn-primary">Get Report</button>
+          <button type="submit" (click)="getData()"class="btn btn-primary">Get Report</button>&nbsp;
+          <button type="submit" (click)="createPdf()"class="btn btn-primary">Print</button>
+
         </div>
       </div>
   
     </form>
   </div>
-  <dx-button
+  <!-- <dx-button
     text="Click me"
     (onClick)="helloWorld()">
-</dx-button>
-<dx-data-grid
+</dx-button> -->
+<!-- <dx-data-grid
     dataSource="assets/data/datagrid.json"
     keyExpr="EmployeeID"
     [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
@@ -35,4 +37,58 @@
     [showBorders]="true"
     [rowAlternationEnabled]="true"
 >
-</dx-data-grid>
+</dx-data-grid> -->
+<!-- <button (click)="createPdf()">Print</button> -->
+<div class="container mt-5">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th>AccountNo</th>
+          <th>ToAccountNo</th>
+          <th>Amount</th>
+          <th>TransType</th>
+          <th>TransStatus</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of tabledata">
+        <td>{{data[0]}}</td>
+        <td>{{ data[1] }}</td>
+        <td>{{ data[2] }}</td>
+        <td>{{ data[3] }}</td>
+        <td>{{ data[4] }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+ 
+
+</div>
+
+
+<!-- API using -->
+<!-- <div class="container mt-5">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th>AccountNo</th>
+          <th>ToAccountNo</th>
+          <th>Amount</th>
+          <th>TransType</th>
+          <th>TransStatus</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of info">
+        <td>{{data[0]}}</td>
+        <td>{{ data[1] }}</td>
+        <td>{{ data[2] }}</td>
+        <td>{{ data[3] }}</td>
+        <td>{{ data[4] }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+ 
+
+</div> -->
