@@ -10,18 +10,18 @@ import 'jspdf-autotable';
   styleUrls: ['./print.component.css']
 })
 export class PrintComponent implements OnInit {
-  info: any;
+  info: any
   fromdate: any;
   todate: any;
-  head:any;
+  head: any;
   tabledata: any;
-  datashow=[
+  datashow = [
     [
-       "10001",
-       "10002",
-       10.00,
-       "CREDIT",
-       "A"
+      "10001",
+      "10002",
+      10.00,
+      "CREDIT",
+      "A"
     ],
     [
       "10001",
@@ -29,47 +29,47 @@ export class PrintComponent implements OnInit {
       10.00,
       "CREDIT",
       "A"
-   ],
-   [
-    "10001",
-    "10002",
-    10.00,
-    "CREDIT",
-    "A"
- ],
- [
-  "10001",
-  "10002",
-  10.00,
-  "CREDIT",
-  "A"
-],
-[
-  "10001",
-  "10002",
-  10.00,
-  "CREDIT",
-  "A"
-],
-[
-  "10001",
-  "10002",
-  10.00,
-  "CREDIT",
-  "A"
-],
-[
-  "10001",
-  "10002",
-  10.00,
-  "CREDIT",
-  "A"
-],
+    ],
+    [
+      "10001",
+      "10002",
+      10.00,
+      "CREDIT",
+      "A"
+    ],
+    [
+      "10001",
+      "10002",
+      10.00,
+      "CREDIT",
+      "A"
+    ],
+    [
+      "10001",
+      "10002",
+      10.00,
+      "CREDIT",
+      "A"
+    ],
+    [
+      "10001",
+      "10002",
+      10.00,
+      "CREDIT",
+      "A"
+    ],
+    [
+      "10001",
+      "10002",
+      10.00,
+      "CREDIT",
+      "A"
+    ],
   ]
-   
+
   constructor(private router: Router, private httpService: HttpClient,) {
-   
-   this.tabledata=this.datashow;
+
+    this.tabledata = this.datashow;
 
   }
   accountvalue: any;
@@ -81,22 +81,47 @@ export class PrintComponent implements OnInit {
     }
   }
   getData() {
-    this.httpService.get('http://localhost:5000/api/Account/GetHistory?&accno=' + this.accountvalue +'&frmDate=' +this.fromdate + '&todate='+this.todate).subscribe((data: any) => {
+    this.httpService.get('http://localhost:5000/api/Account/GetHistory?&accno=' + this.accountvalue + '&frmDate=' + this.fromdate + '&todate=' + this.todate).subscribe((data: any) => {
+      debugger;
       this.info = data;
       console.log(this.info);
     })
   }
+  //   createPdf() {
+  //     var doc = new jsPDF();
+
+  //     doc.setFontSize(18);
+  //     doc.text('History', 11, 8);
+  //     doc.setFontSize(11);
+  //     doc.setTextColor(100);
+
+  //     (doc as any).autoTable({
+  //       head: [['FROM ACCOUNT', 'TO ACCOUNT', 'AMOUNT', 'TRANSTYPE','TRANSSTATUS']],
+  //       body: this.info,
+  //       theme: 'plain',
+  //       tableLineColor: [189, 195, 199],
+  //       tableLineWidth: 0.75,
+  //       //startY: 60,
+  //       // margin: {
+  //       //     top: 60
+  //       // },
+  //     })
+
+  //    // doc.output('dataurlnewwindow')
+  //    doc.save("Table.pdf");
+  // }
+  //API
   createPdf() {
     var doc = new jsPDF();
-
+debugger;
     doc.setFontSize(18);
     doc.text('History', 11, 8);
     doc.setFontSize(11);
     doc.setTextColor(100);
 
     (doc as any).autoTable({
-      head: [['ID', 'NAME', 'DESIGNATION', 'DEPARTMENT','TransStatus']],
-      body: this.datashow,
+      head: [['FROM ACCOUNT', 'TO ACCOUNT', 'AMOUNT', 'TRANSTYPE', 'TRANSSTATUS']],
+      body: this.info,
       theme: 'plain',
       tableLineColor: [189, 195, 199],
       tableLineWidth: 0.75,
@@ -105,32 +130,9 @@ export class PrintComponent implements OnInit {
       //     top: 60
       // },
     })
-  
-   // doc.output('dataurlnewwindow')
-   doc.save("Table.pdf");
+
+    // doc.output('dataurlnewwindow')
+    doc.save("Table.pdf");
+  }
 }
-//API
-// createPdf() {
-//   var doc = new jsPDF();
 
-//   doc.setFontSize(18);
-//   doc.text('History', 11, 8);
-//   doc.setFontSize(11);
-//   doc.setTextColor(100);
-
-//   (doc as any).autoTable({
-//     head: [['ID', 'NAME', 'DESIGNATION', 'DEPARTMENT','TransStatus']],
-//     body: this.info,
-//     theme: 'plain',
-//     tableLineColor: [189, 195, 199],
-//     tableLineWidth: 0.75,
-//     //startY: 60,
-//     // margin: {
-//     //     top: 60
-//     // },
-//   })
-
-//  // doc.output('dataurlnewwindow')
-//  doc.save("Table.pdf");
-// }
-}

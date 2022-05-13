@@ -39,7 +39,7 @@
 >
 </dx-data-grid> -->
 <!-- <button (click)="createPdf()">Print</button> -->
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <table class="table table-striped">
     <thead>
         <tr>
@@ -63,11 +63,11 @@
   </table>
  
 
-</div>
+</div> -->
 
 
 <!-- API using -->
-<!-- <div class="container mt-5">
+<div class="container mt-5">
   <table class="table table-striped">
     <thead>
         <tr>
@@ -80,15 +80,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of info">
-        <td>{{data[0]}}</td>
-        <td>{{ data[1] }}</td>
-        <td>{{ data[2] }}</td>
-        <td>{{ data[3] }}</td>
-        <td>{{ data[4] }}</td>
+        <td>{{data.FromAccountNo}}</td>
+        <td>{{ data.ToAccountNo }}</td>
+        <td>{{ data.Amount }}</td>
+        <td>{{ data.TransType }}</td>
+        <td>{{ data.TransStatus }}</td>
 
       </tr>
     </tbody>
   </table>
  
 
-</div> -->
+</div>
