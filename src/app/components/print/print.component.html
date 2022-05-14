@@ -1,86 +1,44 @@
 <app-home></app-home>
 <div style="margin:20px;">
-    <form>      
-      <div class="form-group row margin10">
-        <label for="frmDate" class="col-sm-2 col-form-label">From Date</label>
-        <div class="col-sm-4">
-            <input type="date" name="frmDate"[(ngModel)]="fromdate" class="form-control">
-        </div>
+  <form>
+    <div class="form-group row margin10">
+      <label for="frmDate" class="col-sm-2 col-form-label">From Date</label>
+      <div class="col-sm-4">
+        <input type="date" name="frmDate" [(ngModel)]="fromdate" class="form-control">
       </div>
-      <div class="form-group row margin10">
-        <label for="toDate" class="col-sm-2 col-form-label">To Date</label>
-        <div class="col-sm-4">
-            <input type="date" name="toDate" [(ngModel)]="todate"class="form-control">
-        </div>
+    </div>
+    <div class="form-group row margin10">
+      <label for="toDate" class="col-sm-2 col-form-label">To Date</label>
+      <div class="col-sm-4">
+        <input type="date" name="toDate" [(ngModel)]="todate" class="form-control">
       </div>
-      <div class="form-group row margin10">
-        <label for="amount" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-4">
-          <button type="submit" (click)="getData()"class="btn btn-primary">Get Report</button>&nbsp;
-          <button type="submit" (click)="createPdf()"class="btn btn-primary">Print</button>
+    </div>
+    <div class="form-group row margin10">
+      <label for="amount" class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-4">
+        <button type="submit" (click)="getData()" class="btn btn-primary">Get Report</button>&nbsp;
+        
+      </div>
+    </div>
 
-        </div>
-      </div>
-  
-    </form>
+  </form>
+</div>
+<div *ngIf="showdata" class="container mt-5">
+  <div style="margin-bottom:10px;text-align:right;">
+    <button type="submit" (click)="createPdf()" class="btn btn-primary">Download Pdf</button>
   </div>
-  <!-- <dx-button
-    text="Click me"
-    (onClick)="helloWorld()">
-</dx-button> -->
-<!-- <dx-data-grid
-    dataSource="assets/data/datagrid.json"
-    keyExpr="EmployeeID"
-    [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
-    [showColumnLines]="false"
-    [showRowLines]="true"
-    [showBorders]="true"
-    [rowAlternationEnabled]="true"
->
-</dx-data-grid> -->
-<!-- <button (click)="createPdf()">Print</button> -->
-<!-- <div class="container mt-5">
   <table class="table table-striped">
     <thead>
-        <tr>
-          <th>AccountNo</th>
-          <th>ToAccountNo</th>
-          <th>Amount</th>
-          <th>TransType</th>
-          <th>TransStatus</th>
-        </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of tabledata">
-        <td>{{data[0]}}</td>
-        <td>{{ data[1] }}</td>
-        <td>{{ data[2] }}</td>
-        <td>{{ data[3] }}</td>
-        <td>{{ data[4] }}</td>
-
+      <tr>
+        <th>ToAccountNo</th>
+        <th>Amount</th>
+        <th>TransType</th>
+        <th>TransStatus</th>
       </tr>
-    </tbody>
-  </table>
- 
-
-</div> -->
-
-
-<!-- API using -->
-<div class="container mt-5">
-  <table class="table table-striped">
-    <thead>
-        <tr>
-          <th>AccountNo</th>
-          <th>ToAccountNo</th>
-          <th>Amount</th>
-          <th>TransType</th>
-          <th>TransStatus</th>
-        </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of info">
-        <td>{{data.FromAccountNo}}</td>
+        <!-- <td>{{data.FromAccountNo}}</td> -->
         <td>{{ data.ToAccountNo }}</td>
         <td>{{ data.Amount }}</td>
         <td>{{ data.TransType }}</td>
@@ -89,6 +47,4 @@
       </tr>
     </tbody>
   </table>
- 
-
 </div>
